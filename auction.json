@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "613907d0df680000720025b2"
+  },
+  "productName": "iPhone",
+  "minimunBid": "8000",
+  "closingDate": "2021-09-18",
+  "ownerEmail": "user1@test.com"
+},{
+  "_id": {
+    "$oid": "613907e5df680000720025b3"
+  },
+  "productName": "tablet",
+  "minimunBid": "10000",
+  "closingDate": "2021-09-30",
+  "ownerEmail": "user1@test.com"
+},{
+  "_id": {
+    "$oid": "613b3a61b9170000500002a2"
+  },
+  "productName": "macbook",
+  "minimunBid": "2000",
+  "closingDate": "2021-09-13",
+  "ownerEmail": "user2@test.com"
+},{
+  "_id": {
+    "$oid": "613b3a93b9170000500002a3"
+  },
+  "productName": "BBQ grill",
+  "minimunBid": "200",
+  "closingDate": "2021-09-26",
+  "ownerEmail": "user2@test.com"
+}]
