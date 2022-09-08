@@ -36,6 +36,14 @@ if(isset($_POST['create'])){
   if ($_SESSION['db_user'] == 'lazadavendor') {
     header("Location: vendorview.php");
   }
+
+  if ($_SESSION['db_user'] == 'lazadashipper') {
+    header("Location: productview.php");
+  }
+
+  if ($_SESSION['db_user'] == 'signinnup') {
+    header("Location: productview.php");
+  }
 }
 }
 else {

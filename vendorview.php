@@ -19,6 +19,14 @@ require_once ('vendor/autoload.php');
 $client = new MongoDB\Client('mongodb://localhost:27017');
 $collection = $client->lazada->product;
 
+$username = $_SESSION['User'];
+
+$sql = "SELECT * FROM Vendor WHERE Username = '$username'";
+$stmt = $dbh->query($sql);
+$vendor = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$vendor_id = (int)$vendor['Vendor_ID'];
+
 if (isset($_POST['create'])){
   header('Location: createproduct.php');
 }
@@ -26,7 +34,7 @@ if (isset($_POST['logout'])){
   header('Location: logout.php');
 }
 
-$query = $collection->find(['vendor_id' => 3],[]);
+$query = $collection->find(['vendor_id' => $vendor_id],[]);
 
 $products = $query->toArray();
 
