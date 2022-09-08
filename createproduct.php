@@ -10,7 +10,7 @@ if (isset($_SESSION['User'])){  //the user with account can fill in and create n
 require_once ('db.php');
 require_once ('vendor/autoload.php');
 $client = new MongoDB\Client('mongodb://localhost:27017');
-$collection = $client->amazon->product;
+$collection = $client->lazada->product;
 
 if (isset($_POST['back'])){
   header("Location: productview.php");
@@ -19,15 +19,23 @@ if (isset($_POST['back'])){
 if(isset($_POST['create'])){
 
   $name = $_POST['name'];
-  $minimum = $_POST['minimum'];
+  $price = $_POST['price'];
   $date = $_POST['date'];
+  $description = $_POST['description'];
+  $vendor_id = $_POST['vendor_id'];
+  $hub_id = $_POST['hub_id'];
 
   $res = $collection->insertOne([
-    'productName' => $name,
+    'hub_id' => (int)$hub_id,
+    'vendor_id' => (int)$vendor_id,
+    'name' => (float)$name,
     'price' => $price,
-    'ownerEmail' => $_SESSION['User']
+    'description' => $description
   ]);
-  header("Location: productview.php");
+
+  if ($_SESSION['db_user'] == 'lazadavendor') {
+    header("Location: vendorview.php");
+  }
 }
 }
 else {
@@ -40,11 +48,22 @@ else {
     <h1>Create a product for sale</h1>
     <p>Fill up the form with correct values.</p>
 
+    <p><label for="hub_id"><b>Hub ID:</b></label>
+    <input type="number" name="hub_id" required></p>
+
+    <p><label for="vendor_id"><b>Vendor ID:</b></label>
+    <input type="number" name="vendor_id" required></p>
+
+
     <p><label for="name"><b>Product name</b></label>
     <input type="text" name="name" required></p>
 
-    <p><label for="price"><b>Price</b></label>
+    <p><label for="price"><b>Price:</b></label>
     <input type="number" name="price" required></p>
+
+    <p><label for="description"><b>Description</b></label>
+    <input type="text" name="description" required></p>
+
 
     <!-- <p><label for="date"><b>Closing date</b></label>
     <input type="date" name="date" required></p> -->

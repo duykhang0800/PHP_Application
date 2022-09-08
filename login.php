@@ -23,34 +23,31 @@ if (isset($_POST['act'])) {   //if the hav an account they can fill in with eith
     $stmt = $dbh->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($row) {
-      if ($row['Role'] == 'customer' && $row['Password' == $password]) {
+    if ($row && $row['Role'] == $role && $row['Password'] == $password) {
+      if ($row['Role'] == 'Vendor') {
+        $_SESSION["User"] = $row['Username'];
+        $_SESSION['db_user'] = 'lazadavendor';
+        header("Location: vendorview.php");
+      }
+
+      if ($row['Role'] == 'Customer') {
         $_SESSION["User"] = $row['Username'];
         $_SESSION['db_user'] = 'signinnup';
         header("Location: productview.php");
       }
 
-      if ($row['Role'] == 'vendor' && $row['Password' == $password]) {
-        $_SESSION["User"] = $row['Username'];
-        $_SESSION['db_user'] = 'lazadavendor';
-        header("Location: productview.php");
-      }
-
-      if ($row['Role'] == 'shipper' && $row['Password' == $password]) {
+      if ($row['Role'] == 'Shipper') {
         $_SESSION["User"] = $row['Username'];
         $_SESSION['db_user'] = 'lazadashipper';
         header("Location: productview.php");
       }
     }
-
-    if ($row && $row['Password'] == $password) {
-      $_SESSION["User"] = $row['Username'];
-      $_SESSION['db_user'] = 'signinnup';
-      header("Location: productview.php");
-    }
     else {
       echo "<p>Login failed. Please try again<p>";
-      echo 'Price: ' . $row . '<br>';
+      echo 'Username: ' . $row['Username'] . '<br>';
+      echo 'Password: ' . $row['Password'] . '<br>';
+      echo 'RoleSQL: ' . $row['Role'] . '<br>';
+      echo 'Role: ' . $role . '<br>';
     }
   }
 }
