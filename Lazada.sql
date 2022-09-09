@@ -2,7 +2,7 @@ CREATE DATABASE lazada;
 USE lazada;
 
 CREATE TABLE `Vendor` (
-	`Vendor_ID` char(10) UNIQUE,
+	`Vendor_ID` INT(11)AUTO_INCREMENT,
 	`Vendor_Name` varchar(50) NOT NULL, 
 	`Address` varchar(255),
 	`Latitude` char(50),
@@ -10,7 +10,7 @@ CREATE TABLE `Vendor` (
 	`Username` varchar(50) UNIQUE,
 	`Password` varchar(50) NOT NULL,
     `Role` varchar(20) NOT NULL,
-	PRIMARY KEY (`Vendor_ID`)
+    Primary key (`Vendor_ID`)
 ) ENGINE=InnoDB;
 
 alter table Vendor add unique Vendor_unique_Latitude_Longitude(Latitude, Longitude);
@@ -62,11 +62,11 @@ Create table `Order`(
 ) ENGINE = InnoDB;
 
 INSERT INTO Customer (Customer_ID, Customer_Name, Address, Latitude, Longitude, Username, Password, Role) VALUES 
-('1','Thang', '0123456789','Ho Chi Minh','10.762621', '106.660172', 'Thangvo','abcxyz', 'Customer'),
+('1','Thang','Ho Chi Minh','10.762621', '106.660172', 'Thangvo','abcxyz', 'Customer'),
 ('2','Nghia','RMIT SGS','10.7293107', '106.691477', 'NNghia','Nghia123','Customer'),
 ('3','Trump','New World Hotel','10.7710502', '106.6925586', 'DTrump','Trump111','Customer'),
 ('4','Khang','Nikko Saigon Hotel','10.7641288', '106.6807345', 'KhangN','Khang222','Customer'),
-('5','Minh', '987654321','Ho Chi Minh','10.762622', '106.660172', 'Minh','minh123', 'Customer');
+('5','Minh','Ho Chi Minh','10.762622', '106.660172', 'Minh','minh123', 'Customer');
 
 INSERT INTO Shipper (Shipper_ID, Username, Password, Distribution_hub, Role) VALUES 
 ('1','ship1','abcxyz','1st','Shipper'),
@@ -105,4 +105,49 @@ GRANT INSERT ON lazada.Vendor TO 'lazadavendor'@'localhost';
 GRANT UPDATE ON lazada.Vendor TO 'lazadavendor'@'localhost';
 GRANT SELECT ON lazada.Shipper TO 'lazadashipper'@'localhost';
 GRANT ALL ON lazada.Customer TO 'lazadacustomer'@'localhost';
+use lazada;
+Select * From vendor;
+select latitude from vendor where latitude limit 1;
 
+-- DELIMITER $$
+-- Create trigger vendor_after_insert
+-- After update 
+-- on vendor for each row
+-- CREATE TRIGGER `add` AFTER INSERT ON `Vendor`
+--  FOR EACH ROW UPDATE vendor
+--     SET company_id = new.id
+--     WHERE id = new.places_id
+
+-- Begin
+-- DECLARE vlatitude varchar(50);
+-- select latitude from vendor where latitude limit 1;
+-- INSERT INTO vendor_nearest_hub (Vendor_id, latitude) values (new.vendor_id, new.latitude);
+-- End;
+drop table if exists addressChanges;
+drop trigger if exists after_address_update;
+create table  `addressChanges` (
+	id INT auto_increment primary key,
+    Vendor_ID INT(11),
+    beforeLatitude char(50),
+    afterLatitude char(50),
+    beforeLongitude char(50),
+	afterLongitude char(50)
+) engine = InnoDB;
+Delimiter $$
+
+Create trigger after_address_update
+after update
+on vendor for each row
+begin
+if old.Latitude <> new.Latitude then
+insert into addressChanges (Vendor_ID, beforeLatitude, afterLatitude, beforeLongitude, afterLongitude)
+values (old.Vendor_ID, old.Latitude, new.Latitude, old.Longitude, new.Longitude);
+end if;
+end$$
+
+update vendor
+set Latitude = 16 , Longitude = 106.1
+where Vendor_ID = 2;
+
+select * from addressChanges;
+select * from vendor;
