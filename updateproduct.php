@@ -58,7 +58,7 @@ if (isset($_POST['update'])) {
 }
 
 if (isset($_POST['back'])){
-  header("Location: productview.php");
+  header("Location: vendorview.php");
 }
 
 if(isset($_POST['create'])){

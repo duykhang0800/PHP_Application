@@ -7,10 +7,6 @@
 <?php
 session_start();
 
-$id= $_GET['id'];
-
-echo 'Products: ' .$id. '<br>';
-
 if (isset($_SESSION['User'])){  //the user with account can fill in and create new auction 
 require_once ('db.php');
 require_once ('vendor/autoload.php');
@@ -18,7 +14,7 @@ $client = new MongoDB\Client('mongodb://localhost:27017');
 $collection = $client->lazada->product;
 
 if (isset($_POST['back'])){
-  header("Location: productview.php");
+  header("Location: vendorview.php");
 }
 
 if(isset($_POST['create'])){
@@ -37,18 +33,6 @@ if(isset($_POST['create'])){
     'price' => $price,
     'description' => $description
   ]);
-
-  if ($_SESSION['db_user'] == 'lazadavendor') {
-    header("Location: vendorview.php");
-  }
-
-  if ($_SESSION['db_user'] == 'lazadashipper') {
-    header("Location: productview.php");
-  }
-
-  if ($_SESSION['db_user'] == 'signinnup') {
-    header("Location: productview.php");
-  }
 }
 }
 else {
