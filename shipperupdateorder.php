@@ -67,7 +67,7 @@ if(isset($_POST['update']))
 
     <body>
 
-        <form action="updateorder.php" method="post">
+        <form action="shipperupdateorder.php" method="post">
 
             ID To Update: <input type="text" name="Order_ID" required><br><br>
 
