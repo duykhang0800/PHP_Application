@@ -13,12 +13,7 @@ if (isset($_POST['act'])) {   //if the hav an account they can fill in with eith
   $username = $_POST['user'];
   $password = $_POST['password'];
   $role = $_POST['role'];
-  if ($username == 'admin' && $password == 'admin'){    //admin account
-    $_SESSION["User"] = 'admnin';
-    $_SESSION['db_user'] = 'auctionadmin';
-    header("Location: adminview.php");
-  }
-  else{   //regular user account
+   //regular user account
     $sql = "SELECT * FROM $role WHERE Username = '$username'";
     $stmt = $dbh->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -50,7 +45,7 @@ if (isset($_POST['act'])) {   //if the hav an account they can fill in with eith
       echo 'Role: ' . $role . '<br>';
     }
   }
-}
+
   
 ?>
 

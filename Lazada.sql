@@ -117,6 +117,8 @@ GRANT ALL ON lazada.Customer TO 'lazadacustomer'@'localhost';
 GRANT ALL ON lazada.Order TO 'lazadashipper'@'localhost';
 GRANT ALL ON lazada.Order TO 'signinnup'@'localhost';
 GRANT ALL ON lazada.Customer TO 'signinnup'@'localhost';
+GRANT SELECT ON lazada.Shipper TO 'signinnup'@'localhost';
+GRANT SELECT ON lazada.Venor TO 'signinnup'@'localhost';
 
 use lazada;
 Select * From vendor;
