@@ -11,7 +11,7 @@
             {
                 // get order details
                 $Order_ID = $_GET['Order_ID'];
-                $conn = mysqli_connect('localhost','root','15042001') or die(mysql_error());
+                $conn = mysqli_connect('localhost','root','') or die(mysql_error());
                 $db_select = mysqli_select_db($conn, 'lazada') or die(mysql_error());
                 // get other details based on order ID
                 $sql = "select * from tbl_Order where Order_ID=$Order_ID";
