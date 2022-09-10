@@ -28,7 +28,7 @@ if(isset($_POST['update']))
     }
            
    // mysql query to Update data
-   $query = "UPDATE `tbl_Order` SET 
+   $query = "UPDATE `lazada.order` SET 
             `Product_name`='".$Product_name."',
             `Price`='".$Price."',
             `Status`='".$Status."',
