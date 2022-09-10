@@ -2,6 +2,15 @@
 //require_once ('db.php');
 // php code to Update data from mysql database Table
 
+if ($_SESSION['User'] == 'admin'){
+  require_once 'db.php';
+  require_once 'vendor/autoload.php';
+
+   if (isset($_POST['back'])){
+    header("Location: shipperview.php");
+    }
+
+    /*
 if(isset($_POST['update']))
 {
     
@@ -10,7 +19,7 @@ if(isset($_POST['update']))
    $password = "15042001";
    $databaseName = "lazada";
    
-   $connect = mysqli_connect($hostname, $username, $password, $databaseName);
+   $connect = mysqli_connect($hostname, $username, $password, $databaseName); */
 
    // get values form input text and number
    
@@ -23,9 +32,7 @@ if(isset($_POST['update']))
    $Phone = $_POST['Phone'];
    $Address = $_POST['Address'];
 
-   if (isset($_POST['back'])){
-    header("Location: shipperview.php");
-    }
+  
            
    // mysql query to Update data
    $query = "UPDATE `lazada.order` SET 
@@ -47,6 +54,7 @@ if(isset($_POST['update']))
        echo 'Data Not Updated';
    }
    mysqli_close($connect);
+}
 }
 
 ?>
