@@ -112,8 +112,6 @@ CREATE USER 'lazadavendor'@'localhost' IDENTIFIED BY '';
 CREATE USER 'lazadacustomer'@'localhost' IDENTIFIED BY '';
 CREATE USER 'lazadashipper'@'localhost' IDENTIFIED BY '';
 
-GRANT SELECT ON lazada.Customer TO 'signinnup'@'localhost';
-GRANT INSERT ON lazada.Customer TO 'signinnup'@'localhost';
 GRANT SELECT ON lazada.Vendor TO 'lazadavendor'@'localhost';
 GRANT INSERT ON lazada.Vendor TO 'lazadavendor'@'localhost';
 GRANT UPDATE ON lazada.Vendor TO 'lazadavendor'@'localhost';
@@ -121,6 +119,7 @@ GRANT SELECT ON lazada.Shipper TO 'lazadashipper'@'localhost';
 GRANT ALL ON lazada.Customer TO 'lazadacustomer'@'localhost';
 GRANT ALL ON lazada.Order TO 'lazadashipper'@'localhost';
 GRANT ALL ON lazada.Order TO 'signinnup'@'localhost';
+GRANT ALL ON lazada.Customer TO 'signinnup'@'localhost';
 
 use lazada;
 Select * From vendor;

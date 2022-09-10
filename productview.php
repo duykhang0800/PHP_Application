@@ -4,12 +4,10 @@ session_start();
 <form method="post">
    <div>
     <input type="submit" name="logout" value="Log Out">
+    <input type="submit" name="updateInfo" value="Update Information">
    </div>
 </form>
 <?php
-if($_SESSION['User'] == 'admin'){
-  header('Location: adminview.php');
-}
 
 if (isset($_SESSION['User'])){    //after login the user will able to view all auction and navigate page in this main page
 
@@ -26,6 +24,11 @@ if (isset($_SESSION['User'])){    //after login the user will able to view all a
 
   if (isset($_POST['logout'])){
     header('Location: logout.php');
+  }
+
+  if (isset($_POST['updateInfo'])) {
+    $username = $_SESSION['User'];
+    header("Location: updatecustomerinfo.php?username=".$username);
   }
   
   $query = $collection->find();
