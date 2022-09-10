@@ -29,7 +29,7 @@
                 <?php
                     
                     // connect to the db
-                    $conn = mysqli_connect('localhost','root','15042001') or die(mysql_error());
+                    $conn = mysqli_connect('localhost','root','') or die(mysql_error());
                     $db_select = mysqli_select_db($conn, 'lazada') or die(mysql_error());
                     // Get all the orders from database
                     $sql = "SELECT * FROM tbl_Order"; // display first order first
