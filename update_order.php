@@ -2,7 +2,7 @@
 
 session_start();
 
-$conn = new mysqli("localhost","root","15042001","lazada") or die(mysqli_error($conn));
+$conn = new mysqli("localhost",$_SESSION['db_user'],$pass,"lazada") or die(mysqli_error($conn));
 
 $update = false;
 $Order_ID = 0;
@@ -25,7 +25,7 @@ if (isset($_POST['save'])){
     $Phone = $_POST['Phone'];
     $Address = $_POST['Address'];
 
-    $conn->query("INSERT INTO tbl_Order(Product_name, Price, Status, Customer_Name, Customer_Phone, Phone, Address)
+    $conn->query("INSERT INTO lazada.Order(Product_name, Price, Status, Customer_Name, Customer_Phone, Phone, Address)
                 VALUES('$Product_name', '$Price', '$Status', '$Customer_Name', '$Customer_Phone', '$Phone', '$Address')") 
                 or die($conn->error);
     
@@ -38,7 +38,7 @@ if (isset($_POST['save'])){
 if (isset($_GET['edit'])){
     $Order_ID = $_GET['edit'];
     $update = true;
-    $result = $conn->query("select * from tbl_Order where Order_ID=$Order_ID") or die($conn->error());
+    $result = $conn->query("select * from lazada.Order where Order_ID=$Order_ID") or die($conn->error());
     if ($result->num_rows){
         $row = $result->fetch_array();
         $Product_name = $row['Product_name'];
@@ -61,7 +61,7 @@ if(isset($_POST['update'])){
     $Phone = $_POST['Phone'];
     $Address = $_POST['Address'];
 
-    $conn->query("UPDATE tbl_Order SET  Product_name='$Product_name',
+    $conn->query("UPDATE lazada.Order SET  Product_name='$Product_name',
                                         Price ='$Price',
                                         Status ='$Status',
                                         Customer_Name='$Customer_Name',
