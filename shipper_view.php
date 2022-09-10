@@ -21,8 +21,8 @@
         <?php endif; ?>   
         <div class="container">
         <?php 
-            $conn = new mysqli("localhost","root","15042001","lazada") or die(mysqli_error($conn));
-            $result = $conn->query("SELECT * FROM tbl_Order") or die($conn->error);
+            $conn = new mysqli("localhost",$_SESSION['db_user'],$pass,"lazada") or die(mysqli_error($conn));
+            $result = $conn->query("SELECT * FROM lazada.Order") or die($conn->error);
         ?>
 
             <div class="row justify-content-center">
@@ -69,7 +69,7 @@
         ?>
         <div class="row-justify-content-center">
         <form action="update_order.php" method="post">
-            <input type="hidden" name="OrderID" value="<?php echo$Order_ID ?>">
+            <input type="hidden" name="OrderID" value="<?php echo $Order_ID ?>">
             
             <div class="form-group">
             <label>Product name</label>
