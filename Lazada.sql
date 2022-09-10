@@ -61,7 +61,7 @@ Create table `Order`(
 	Primary key (`Order_ID`)
 ) ENGINE = InnoDB;
 
-INSERT INTO tbl_Order (Order_ID, Product_Name, Price, Status, Customer_Name, Customer_Phone, Phone, Address) VALUES 
+INSERT INTO lazada.order (Order_ID, Product_Name, Price, Status, Customer_Name, Customer_Phone, Phone, Address) VALUES 
 ('1','8 can of Coke','150','Ready', 'Nghia', '0111111111','0111111111', 'rmitsgs'),
 ('2','8 can of beer','200','Shipped', 'Thang', '0111111112','0111111112', 'rmitsgs'),
 ('3','8 can of Milk','100','Cancelled', 'Khang', '	0111111113','0111111113', 'rmithn'),
