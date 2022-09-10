@@ -34,36 +34,33 @@
                 </tr>
                 <?php 
                     // Get all the orders from database
-                    $sql = "SELECT * FROM lazada.order ORDER BY Order_ID DESC;"; // display latest order first
+                    $sql = "SELECT * FROM lazada.order ORDER BY Order_ID DESC"; // display latest order first
                     // Execute the query
-                    // $res = mysqli_query($sql);
-                    // // Count the rows
-                    // $count = mysqli_num_rows($res);
-
-                    $stmt = $dbh->query($sql);
-                    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $res = mysqli_query($mysqli, $sql);
+                    // Count the rows
+                    $count = mysqli_num_rows($res);
                     $on = 1; // create an order number, default value equal 1
 
-                    if($res>0)
+                    if($count>0)
                     {
                         // Order is available
-                        foreach ($res as $row)
+                        while($row = mysqli_fetch_assoc($res))
                         {
                             // get order details
-                            // $Order_ID = $row['Order_ID'];
-                            // $Product_name = $row['Product_name'];
-                            // $Price = $row['Price'];
-                            // $Status = $row['Status'];
-                            // $Customer_Name = $row['Customer_Name'];
-                            // $Customer_Phone = $row['Customer_Phone'];
-                            // $Phone = $row['Phone'];
-                            // $Address = $row['Address'];
+                            $Order_ID = $row['Order_ID'];
+                            $Product_name = $row['Product_name'];
+                            $Price = $row['Price'];
+                            $Status = $row['Status'];
+                            $Customer_Name = $row['Customer_Name'];
+                            $Customer_Phone = $row['Customer_Phone'];
+                            $Phone = $row['Phone'];
+                            $Address = $row['Address'];
 
                             ?>
                                  <tr>
-                                    <td><?php echo $$row['Order_ID']; ?></td>
-                                    <td><?php echo $row['Product_name']; ?></td>
-                                    <td><?php echo $row['Price']; ?></td>
+                                    <td><?php echo $on++; ?></td>
+                                    <td><?php echo $Product_name; ?></td>
+                                    <td><?php echo $Price; ?></td>
                                     <td>
                                         <?php
                                             // Ready, On Deli, Deli-ed, Cancelled
@@ -89,9 +86,13 @@
                                     <td><?php echo $Customer_Phone; ?></td>
                                     <td><?php echo $Phone; ?></td>
                                     <td><?php echo $Address; ?></td>
-                                    <!-- <td>
-                                        <a href="<?php echo SITEURL; ?>database_applications/updateorder.php?id=<?php echo $Order_ID; ?>" class="btn-secondary">Update Order</a>
-                                    </td> -->
+                                    <td>
+                                        <form method="post">
+                                            <div>
+                                                <input type="submit" name="update" value="Update Product">
+                                            </div>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php 
                         }

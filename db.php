@@ -4,3 +4,5 @@
 $pass = "";
 
 $dbh = new PDO('mysql:host=localhost;dbname=lazada', $_SESSION['db_user'], $pass);
+
+$mysqli = new mysqli("localhost",$_SESSION['db_user'],$pass,"lazada");
