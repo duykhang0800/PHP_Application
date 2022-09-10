@@ -155,11 +155,11 @@ Create trigger after_address_update
 after update
 on vendor for each row
 begin
-if old.Latitude <> new.Latitude then
+if old.Latitude <> new.Latitude OR old.Longitude <> new.Longitude then
 insert into addressChanges (Vendor_ID, beforeLatitude, afterLatitude, beforeLongitude, afterLongitude)
 values (old.Vendor_ID, old.Latitude, new.Latitude, old.Longitude, new.Longitude);
 end if;
-end$$
+end;
 
 update vendor
 set Latitude = 16 , Longitude = 106.1
@@ -167,3 +167,18 @@ where Vendor_ID = 2;
 
 select * from addressChanges;
 select * from vendor;
+
+Create trigger after_customer_address_update
+after update
+on customer for each row
+begin
+if old.Latitude <> new.Latitude OR old.Longitude <> new.Longitude then
+insert into addressChanges (Customer_ID, beforeLatitude, afterLatitude, beforeLongitude, afterLongitude)
+values (old.Customer_ID, old.Latitude, new.Latitude, old.Longitude, new.Longitude);
+end if;
+end;
+update customer
+set Latitude = 16 , Longitude = 106.1
+where Customer_ID = 2;
+
+
