@@ -120,6 +120,7 @@ GRANT UPDATE ON lazada.Vendor TO 'lazadavendor'@'localhost';
 GRANT SELECT ON lazada.Shipper TO 'lazadashipper'@'localhost';
 GRANT ALL ON lazada.Customer TO 'lazadacustomer'@'localhost';
 GRANT ALL ON lazada.Order TO 'lazadashipper'@'localhost';
+GRANT ALL ON lazada.Order TO 'signinnup'@'localhost';
 
 use lazada;
 Select * From vendor;

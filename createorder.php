@@ -26,33 +26,48 @@ echo '<p>Hello World</p>';
 
 foreach ($products as $product) {
     echo "<form method='post'>";
-    echo "<p><label for='hub_id'><b>Hub ID:</b></label>";
-    echo "<input type='number' name='hub_id' required value='".$product["hub_id"]."'></p>";
-    echo "<p><label for='vendor_id'><b>Vendor ID:</b></label>";
-    echo "<input type='number' name='vendor_id' required value='".$product["vendor_id"]."'></p>";
     echo "<p><label for='name'><b>Product name:</b></label>";
-    echo "<input type='text' name='name' required value='".$product["name"]."'></p>";
+
+    //Users are not allowed to change product details
+    echo "<input type='text' name='name' required value='".$product["name"]."' readonly='true'></p>";
     echo "<p><label for='price'><b>Price:</b></label>";
-    echo "<input type='number' name='price' required value='".$product["price"]."'></p>";
+    echo "<input type='number' name='price' required value='".$product["price"]."' readonly='true'></p>";
     echo "<p><label for='description'><b>Description:</b></label>";
-    echo "<input type='text' name='description' required value='".$product["description"]."'></p>";
-    echo "<p><input type='submit' name='update' value='update'></p>";
+    echo "<input type='text' name='description' required value='".$product["description"]."' readonly='true'></p>";
+
+    //Customer information
+    echo "<p><label for='customername'><b>Customer Name:</b></label>";
+    echo "<input type='text' name='customername' required value=''></p>";
+    echo "<p><label for='phone'><b>Phone:</b></label>";
+    echo "<input type='text' name='phone' required value=''></p>";
+    echo "<p><label for='address'><b>Address:</b></label>";
+    echo "<input type='text' name='address' required value=''></p>";
+    echo "<p><input type='submit' name='create' value='create'></p>";
     echo "</form>";
 }
 
-if (isset($_POST['update'])) {
+if (isset($_POST['create'])) {
+
+    $sql = "SELECT * FROM lazada.order"; // display first order first
+                    // Execute the query
+    $res = mysqli_query($conn, $sql);
+                    // Count the rows
+    $count = mysqli_num_rows($res);
+
+
+    $Order_ID = $count + 1;
     $name = $_POST['name'];
     $price = $_POST['price'];
-    $description = $_POST['description'];
-    $vendor_id = $_POST['vendor_id'];
-    $hub_id = $_POST['hub_id'];
+    $status = "Ready";
+    $customerName = $_POST['customername'];
+    $customerPhone = $_POST['phone'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
 
-    $res = $collection->updateOne(['_id' => new \MongoDB\BSON\ObjectID($id)], 
-            ['$set' => ['name' => $name, 
-            'price' => $price, 
-            'vendor_id' => $vendor_id, 
-            'hub_id' => $hub_id,
-            'description' => $description]]);
+    $insertSql = "INSERT INTO lazada.order (Order_ID, Product_Name, Price, Status, Customer_Name, Customer_Phone, Phone, Address) VALUES 
+    ('".$Order_ID."','".$name."','".$price."','".$status."', '".$customerName."', '".$customerPhone."','".$phone."', '".$address."');";
+
+    $execute = mysqli_query($conn, $insertSql);
 
     header("Location: updateproduct.php?id=".$id);
 }
@@ -101,7 +116,7 @@ else {
     <p>Fill up the form with correct values.</p>
 
     <p><label for="hub_id"><b>Hub ID:</b></label>
-    <input type="number" name="hub_id" required></p>
+    <input type="number" name="hub_id" value='""' required></p>
 
     <p><label for="vendor_id"><b>Vendor ID:</b></label>
     <input type="number" name="vendor_id" required></p>

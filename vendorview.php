@@ -45,8 +45,9 @@ $query = $collection->find(['vendor_id' => $vendor_id],[]);
 
 $products = $query->toArray();
 
+$value = 'Update';
+
 echo '_____________________________________________ <br> <br>';
-echo 'Products: ' . $products[1]['name'] . '<br>';
 foreach ($products as $product) {
     // $id = $product['_id'];
     // $sql = "SELECT MAX(Bid) AS current FROM Bid WHERE Auction_ID = '$id'";
@@ -58,7 +59,7 @@ foreach ($products as $product) {
     echo 'Description: ' . $product['description'] . '<br>';
     echo 'Seller: ' . $product['vendor_id'] . '<br>';
     echo '<form method="post">';
-    echo '<input type="submit" name="update" placeholder="Update" value="' .$product['_id']. '">';
+    echo '<button type="submit" name="update" value="'.$product['_id'].'">Update</button>';
     echo '</form>';
     echo '_____________________________________________ <br> <br>';
 }

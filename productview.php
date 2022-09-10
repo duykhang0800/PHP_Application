@@ -19,6 +19,12 @@ if (isset($_SESSION['User'])){    //after login the user will able to view all a
   $client = new MongoDB\Client('mongodb://localhost:27017');
   $collection = $client->lazada->product;
   
+  if (isset($_POST['purchase'])){
+    $id = $_POST['purchase'];
+    echo 'Products: ' .$id. '<br>';
+    header("Location: createorder.php?id=".$id);
+  }
+
   if (isset($_POST['create'])){
     header('Location: createproduct.php');
   }
@@ -42,6 +48,9 @@ if (isset($_SESSION['User'])){    //after login the user will able to view all a
       echo 'Price: ' . $product['price'] . '<br>';
       echo 'Description: ' . $product['description'] . '<br>';
       echo 'Seller: ' . $product['vendor_id'] . '<br>';
+      echo '<form method="post">';
+      echo '<button type="submit" name="purchase" value="'.$product['_id'].'">Purchase</button>';
+      echo '</form>';
       echo '_____________________________________________ <br> <br>';
   }
 
