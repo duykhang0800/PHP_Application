@@ -2,7 +2,7 @@
 //require_once ('db.php');
 // php code to Update data from mysql database Table
 
-if ($_SESSION['User'] == 'admin'){
+if ($_SESSION['db_user'] == 'admin'){
   require_once 'db.php';
   require_once 'vendor/autoload.php';
 
