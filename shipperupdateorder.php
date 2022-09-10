@@ -45,7 +45,7 @@ if(isset($_POST['update']))
             `Address`='".$Address."'
             WHERE `Order_ID` = $Order_ID";
    
-   $result = mysqli_query($connect, $query);
+   $result = mysqli_query($conn, $query);
    
    if($result)
    {
@@ -53,7 +53,7 @@ if(isset($_POST['update']))
    }else{
        echo 'Data Not Updated';
    }
-   mysqli_close($connect);
+   mysqli_close($conn);
 }
 }
 
