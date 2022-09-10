@@ -1,0 +1,72 @@
+[{
+    "_id" : { "$oid" : "6318b0856190f00cf66132ab" }, 
+	"hub_id":3,
+	"vendor_id":3,
+	"name" : "Toddler Food", 
+	"price" : 60, 
+	"description" : "Cook with hot water" 
+  },{
+    "_id" : { "$oid" : "6318b0856190f00cf66132ac" }, 
+	"hub_id":3,
+	"vendor_id":3,
+	"name" : "8 packs of Non-Alcoholic beer", 
+	"price" : 150, 
+	"description" : "Keep in the refrigerator"
+  },{
+    "_id" : { "$oid" : "6318b0856190f00cf66132ad" }, 
+	"hub_id":4,
+	"vendor_id":4,
+	"name" : "16 Packs of Coca-Cola", 
+	"price" : 150, 
+	"description" : "Better with ice"
+  },{
+    "_id" : { "$oid" : "6318b0856190f00cf66132ae" }, 
+	"hub_id":4,
+	"vendor_id":4,
+	"name" : "2L bottle of Coca-Cola", 
+	"price" : 30, 
+	"description" : "Better with ice"
+  },{
+    "_id" : { "$oid" : "6318b0856190f00cf66132af" }, 
+	"hub_id":5,
+	"vendor_id":5,
+	"name" : "Computer Keyboard", 
+	"price" : 300, 
+	"description" : "Connect through an USB-C cable"
+  },{
+    "_id" : { "$oid" : "6318b04b6190f00cf66132a6" }, 
+	"hub_id":5,
+	"vendor_id":5,
+	"name" : "Mouse Pad", 
+	"price" : 100, 
+	"description" : "Use with a computer mouse" 
+  },{
+    "_id" : { "$oid" : "6318b0856190f00cf66132a7" }, 
+	"hub_id":1,
+	"vendor_id":1,
+	"name" : "Computer Mouse", 
+	"price" : 200, 
+	"description" : "Connect through an USB-A cable"
+  },{
+    "_id" : { "$oid" : "6318b0856190f00cf66132a8" }, 
+	"hub_id":1,
+	"vendor_id":1,
+	"name" : "4 Packs of Milk", 
+	"price" : 50, 
+	"description" : "Use for children"
+  },{
+    "_id" : { "$oid" : "6318b0856190f00cf66132a9" }, 
+	"hub_id":2,
+	"vendor_id":2,
+	"name" : "8 Packs of Beer", 
+	"price" : 100, 
+	"description" : "Do not drink too much"
+  },{
+    "_id" : { "$oid" : "6318b0856190f00cf66132aa" }, 
+	"hub_id":2,
+	"vendor_id":2,
+	"name" : "Can of Milk powder", 
+	"price" : 70, 
+	"description" : "Mix with hot water"
+
+}]
