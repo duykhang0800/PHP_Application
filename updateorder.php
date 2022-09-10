@@ -5,7 +5,7 @@
         <br></br>
         
         <?php
-         if ($_SESSION["User"] = 'shipper') { //this is similar as user main page but have functions for shipper
+         if ($_SESSION["db_user"] = 'lazadashipper') { //this is similar as user main page but have functions for shipper
             require_once ('db.php');
             require_once 'vendor/autoload.php';
             $client = new MongoDB\Client('mongodb://localhost:27017');
@@ -39,13 +39,13 @@
                 {
                     // details unavailable
                     // back to shipper view page
-                    header('location:'.SITEURL.'database_applications/shipperview.php');
+                    header('location: shipperview.php');
                 }
             }
             else
             {
                 // back to shipper view page
-                header('location:'.SITEURL.'database_applications/shipperview.php');
+                header('location: shipperview.php');
             }
         }
         ?>

@@ -39,7 +39,7 @@ if (isset($_POST['act'])) {   //if the hav an account they can fill in with eith
       if ($row['Role'] == 'Shipper') {
         $_SESSION["User"] = $row['Username'];
         $_SESSION['db_user'] = 'lazadashipper';
-        header("Location: productview.php");
+        header("Location: shipperview.php");
       }
     }
     else {
