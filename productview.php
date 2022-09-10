@@ -3,7 +3,6 @@ session_start();
 ?>
 <form method="post">
    <div>
-    <input type="submit" name="create" value="Add product">
     <input type="submit" name="logout" value="Log Out">
    </div>
 </form>
@@ -25,9 +24,6 @@ if (isset($_SESSION['User'])){    //after login the user will able to view all a
     header("Location: createorder.php?id=".$id);
   }
 
-  if (isset($_POST['create'])){
-    header('Location: createproduct.php');
-  }
   if (isset($_POST['logout'])){
     header('Location: logout.php');
   }
