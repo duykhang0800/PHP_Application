@@ -90,6 +90,9 @@ INSERT INTO Distribution_hub (Shipper_ID, Hub_ID, Hub_Name, Latitude, Longitude,
 ('4','4','Ben Xe Mien Dong','10.8146133', '106.7105605', 'benxe'),
 ('5','5','5th','10.762621', '106.660172', 'fifth');
 
+INSERT INTO `lazada`.`order`(`Order_ID`, `Product_name`, `Price`, `Status`, `Customer_Name`, `Customer_Phone`, `Phone`, `Address`) VALUES
+('1', 'test', '', '', '', '', '', '');
+
 DROP USER IF EXISTS 'lazadavendor'@'localhost';
 DROP USER IF EXISTS 'lazadacustomer'@'localhost';
 DROP USER IF EXISTS 'lazadashipper'@'localhost';

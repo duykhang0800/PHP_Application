@@ -3,8 +3,8 @@ session_start();
 ?>
 <form method="post">
    <div>
-    <input type="submit" name="create" value="Add product">
-    <input type="submit" name="logout" value="Log Out">
+      <input type="submit" name="create" value="Add product">
+      <input type="submit" name="logout" value="Log Out">
    </div>
 </form>
 <?php
@@ -30,6 +30,13 @@ $vendor_id = (int)$vendor['Vendor_ID'];
 if (isset($_POST['create'])){
   header('Location: createproduct.php');
 }
+
+if (isset($_POST['update'])){
+  $id = $_POST['update'];
+  echo 'Products: ' .$id. '<br>';
+  header("Location: updateproduct.php?id=".$id);
+}
+
 if (isset($_POST['logout'])){
   header('Location: logout.php');
 }
@@ -50,6 +57,9 @@ foreach ($products as $product) {
     echo 'Price: ' . $product['price'] . '<br>';
     echo 'Description: ' . $product['description'] . '<br>';
     echo 'Seller: ' . $product['vendor_id'] . '<br>';
+    echo '<form method="post">';
+    echo '<input type="submit" name="update" placeholder="Update" value="' .$product['_id']. '">';
+    echo '</form>';
     echo '_____________________________________________ <br> <br>';
 }
 
