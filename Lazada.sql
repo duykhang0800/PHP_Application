@@ -61,6 +61,17 @@ Create table `Order`(
 	Primary key (`Order_ID`)
 ) ENGINE = InnoDB;
 
+INSERT INTO tbl_Order (Order_ID, Product_Name, Price, Status, Customer_Name, Customer_Phone, Phone, Address) VALUES 
+('1','8 can of Coke','150','Ready', 'Nghia', '0111111111','0111111111', 'rmitsgs'),
+('2','8 can of beer','200','Shipped', 'Thang', '0111111112','0111111112', 'rmitsgs'),
+('3','8 can of Milk','100','Cancelled', 'Khang', '	0111111113','0111111113', 'rmithn'),
+('4','Mouse Pad','70','Shipped', 'Trump', '0211111111','0211111111', 'TDTU'),
+('5','Keyboard','200','Ready', 'ANguyen', '0211111112','0211111112', '100 NTMK Dist 1'),
+('6','15 can of beer','200','Cancelled', 'BTran', '0311111112','0311111112', 'nikko hotel'),
+('7','20 can of beer','250','Ready', 'CLe', '0411111112','0411111112', 'saigon zoo'),
+('8','30 can of beer','300','Shipped', 'DVu', '0511111112','0511111112', 'starbucks new world'),
+('9','40 can of Milk','400','Cancelled', 'HHoang', '0611111113','0611111113', 'phuc long tran quang khai');
+
 INSERT INTO Customer (Customer_ID, Customer_Name, Address, Latitude, Longitude, Username, Password, Role) VALUES 
 ('1','Thang','Ho Chi Minh','10.762621', '106.660172', 'Thangvo','abcxyz', 'Customer'),
 ('2','Nghia','RMIT SGS','10.7293107', '106.691477', 'NNghia','Nghia123','Customer'),
