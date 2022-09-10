@@ -47,8 +47,6 @@ $query = $collection->find(['vendor_id' => $vendor_id],[]);
 
 $products = $query->toArray();
 
-$value = 'Update';
-
 echo '_____________________________________________ <br> <br>';
 foreach ($products as $product) {
     echo '<b>' . 'ID : ' . $product['_id'] . '<br>' . '</b>';

@@ -65,35 +65,6 @@ if (isset($_POST['update'])) {
 if (isset($_POST['back'])){
   header("Location: productview.php");
 }
-
-if(isset($_POST['create'])){
-
-  $name = $_POST['name'];
-  $price = $_POST['price'];
-  $description = $_POST['description'];
-  $customer_id = $_POST['vendor_id'];
-  $hub_id = $_POST['hub_id'];
-
-  $res = $collection->insertOne([
-    'hub_id' => (int)$hub_id,
-    'vendor_id' => (int)$customer_id,
-    'name' => (float)$name,
-    'price' => $price,
-    'description' => $description
-  ]);
-
-  if ($_SESSION['db_user'] == 'lazadavendor') {
-    header("Location: vendorview.php");
-  }
-
-  if ($_SESSION['db_user'] == 'lazadashipper') {
-    header("Location: productview.php");
-  }
-
-  if ($_SESSION['db_user'] == 'signinnup') {
-    header("Location: productview.php");
-  }
-}
 }
 else {
   header('Location: login.php');

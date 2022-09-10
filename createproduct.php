@@ -21,7 +21,6 @@ if(isset($_POST['create'])){
 
   $name = $_POST['name'];
   $price = $_POST['price'];
-  $date = $_POST['date'];
   $description = $_POST['description'];
   $vendor_id = $_POST['vendor_id'];
   $hub_id = $_POST['hub_id'];
@@ -29,8 +28,8 @@ if(isset($_POST['create'])){
   $res = $collection->insertOne([
     'hub_id' => (int)$hub_id,
     'vendor_id' => (int)$vendor_id,
-    'name' => (float)$name,
-    'price' => $price,
+    'name' => $name,
+    'price' => (float)$price,
     'description' => $description
   ]);
 }
@@ -52,18 +51,14 @@ else {
     <input type="number" name="vendor_id" required></p>
 
 
-    <p><label for="name"><b>Product name</b></label>
+    <p><label for="name"><b>Product name:</b></label>
     <input type="text" name="name" required></p>
 
     <p><label for="price"><b>Price:</b></label>
     <input type="number" name="price" required></p>
 
-    <p><label for="description"><b>Description</b></label>
+    <p><label for="description"><b>Description:</b></label>
     <input type="text" name="description" required></p>
-
-
-    <!-- <p><label for="date"><b>Closing date</b></label>
-    <input type="date" name="date" required></p> -->
 
     <p><input type="submit" name="create" value="create"></p>
   </div>

@@ -38,10 +38,6 @@ if (isset($_SESSION['User'])){    //after login the user will able to view all a
   echo '_____________________________________________ <br> <br>';
   echo 'Products: ' . $products[1]['name'] . '<br>';
   foreach ($products as $product) {
-      // $id = $product['_id'];
-      // $sql = "SELECT MAX(Bid) AS current FROM Bid WHERE Auction_ID = '$id'";
-      // $stmt = $dbh->query($sql);
-      // $row = $stmt->fetch(PDO::FETCH_ASSOC);
       echo '<b>' . 'ID : ' . $product['_id'] . '<br>' . '</b>';
       echo 'Product : ' . $product['name'] . '<br>';
       echo 'Price: ' . $product['price'] . '<br>';
@@ -52,7 +48,6 @@ if (isset($_SESSION['User'])){    //after login the user will able to view all a
       echo '</form>';
       echo '_____________________________________________ <br> <br>';
   }
-
 }
 else { // this part will be in eveypage to make sure user is logged in
   header('Location: login.php');
