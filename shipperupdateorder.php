@@ -76,14 +76,14 @@
                     <td>
                         <textarea name="address" cols="30" rows="5"></textarea>
                     </td>
-                </tr
+                </tr>
 
                 <tr> 
                     <td>Phone</td>
                     <td>
                         <input type="number" name="Phone" value="<?php echo $Phone; ?>">
                     </td>
-                </tr
+                </tr>
 
                 <tr> 
                     <td>Status </td>

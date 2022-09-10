@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once 'db.php';
+?>
+
 <div class="main-content">
     <div class="wrapper">
         <h1>Shipper View</h1>
@@ -29,10 +34,9 @@
                 <?php
                     
                     // connect to the db
-                    $conn = mysqli_connect('localhost','root','') or die(mysql_error());
                     $db_select = mysqli_select_db($conn, 'lazada') or die(mysql_error());
                     // Get all the orders from database
-                    $sql = "SELECT * FROM tbl_Order"; // display first order first
+                    $sql = "SELECT * FROM lazada.order"; // display first order first
                     // Execute the query
                     $res = mysqli_query($conn, $sql);
                     // Count the rows
@@ -65,7 +69,7 @@
                                     <td><?php echo $Phone; ?></td>
                                     <td><?php echo $Address; ?></td>
                                     <td>
-                                    <a href="updateorder.php">
+                                    <a href="shipperupdateorder.php">
                                         <button>Update</button>
                                     </a>
                                     </td>
