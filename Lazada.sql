@@ -118,7 +118,7 @@ GRANT ALL ON lazada.Order TO 'lazadashipper'@'localhost';
 GRANT ALL ON lazada.Order TO 'signinnup'@'localhost';
 GRANT ALL ON lazada.Customer TO 'signinnup'@'localhost';
 GRANT SELECT ON lazada.Shipper TO 'signinnup'@'localhost';
-GRANT SELECT ON lazada.Venor TO 'signinnup'@'localhost';
+GRANT SELECT ON lazada.Vendor TO 'signinnup'@'localhost';
 
 use lazada;
 Select * From vendor;
@@ -140,6 +140,8 @@ select latitude from vendor where latitude limit 1;
 -- End;
 drop table if exists addressChanges;
 drop trigger if exists after_address_update;
+drop trigger if exists after_address_update;
+drop trigger if exists after_customer_address_update;
 create table  `addressChanges` (
 	id INT auto_increment primary key,
     Vendor_ID INT(11),
@@ -147,6 +149,15 @@ create table  `addressChanges` (
     afterLatitude char(50),
     beforeLongitude char(50),
 	afterLongitude char(50)
+) engine = InnoDB;
+
+create table  `customer_addressChanges` (
+                                   id INT auto_increment primary key,
+                                   Customer_ID INT(11),
+                                   beforeLatitude char(50),
+                                   afterLatitude char(50),
+                                   beforeLongitude char(50),
+                                   afterLongitude char(50)
 ) engine = InnoDB;
 Delimiter $$
 
@@ -172,7 +183,7 @@ after update
 on customer for each row
 begin
 if old.Latitude <> new.Latitude OR old.Longitude <> new.Longitude then
-insert into addressChanges (Customer_ID, beforeLatitude, afterLatitude, beforeLongitude, afterLongitude)
+insert into customer_addressChanges (Customer_ID, beforeLatitude, afterLatitude, beforeLongitude, afterLongitude)
 values (old.Customer_ID, old.Latitude, new.Latitude, old.Longitude, new.Longitude);
 end if;
 end;
