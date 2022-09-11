@@ -27,7 +27,7 @@ if (isset($_POST['act'])) {   //if the hav an account they can fill in with eith
 
       if ($row['Role'] == 'Customer') {
         $_SESSION["User"] = $row['Username'];
-        $_SESSION['db_user'] = 'signinnup';
+        $_SESSION['db_user'] = 'lazadacustomer';
         header("Location: productview.php");
       }
 

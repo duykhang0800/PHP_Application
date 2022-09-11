@@ -7,29 +7,51 @@ require_once('db.php')
       <?php
       $_SESSION['db_user'] = 'signinnup';
       if(isset($_POST['create'])){ //recieve fields for user to insert new account to database
+        $execute;
 
-        $sql = "SELECT * FROM Customer"; // display first order first
-        // Execute the query
-        $res = mysqli_query($conn, $sql);
-        // Count the rows
-        $count = mysqli_num_rows($res);
+        if ($_POST['role'] == 'Customer') {
+          $sql = "SELECT * FROM Customer"; // display first order first
+          // Execute the query
+          $res = mysqli_query($conn, $sql);
+          // Count the rows
+          $count = mysqli_num_rows($res);
 
-        $id = $count + 1;
-        $phone = $_POST['phone'];
-        $name = $_POST['name'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $address = $_POST['address'];
-        $longitude = $_POST['longitude'];
-        $latitude = $_POST['latitude'];
+          $id = $count + 1;
+          $name = $_POST['name'];
+          $username = $_POST['username'];
+          $password = $_POST['password'];
+          $address = $_POST['address'];
+          $longitude = $_POST['longitude'];
+          $latitude = $_POST['latitude'];
         
-        $insertSql = "INSERT INTO Customer (Customer_ID, Customer_Name, Address, Latitude, Longitude, Username, Password, Role) VALUES 
-        ('".$id."','".$name."','".$address."','".$latitude."', '".$longitude."', '".$username."','".$password."', 'Customer');";
+          $insertSql = "INSERT INTO Customer (Customer_ID, Customer_Name, Address, Latitude, Longitude, Username, Password, Role) VALUES 
+          ('".$id."','".$name."','".$address."','".$latitude."', '".$longitude."', '".$username."','".$password."', 'Customer');";
         
-        $execute = mysqli_query($conn, $insertSql);
+          $execute = mysqli_query($conn, $insertSql);
+        }
+        
+        if ($_POST['role'] == 'Vendor') {
+          $sql = "SELECT * FROM Vendor"; // display first order first
+          // Execute the query
+          $res = mysqli_query($conn, $sql);
+          // Count the rows
+          $count = mysqli_num_rows($res);
+
+          $id = $count + 1;
+          $name = $_POST['name'];
+          $username = $_POST['username'];
+          $password = $_POST['password'];
+          $address = $_POST['address'];
+          $longitude = $_POST['longitude'];
+          $latitude = $_POST['latitude'];
+        
+          $insertSql = "INSERT INTO Vendor (Vendor_ID, Vendor_Name, Address, Latitude, Longitude, Username, Password, Role) VALUES 
+          ('".$id."','".$name."','".$address."','".$latitude."', '".$longitude."', '".$username."','".$password."', 'Customer');";
+        
+          $execute = mysqli_query($conn, $insertSql);
+        }
 
         if ($execute){
-          echo 'Create an account successfully';
           header('Location: login.php');
         }
         else {
@@ -67,9 +89,6 @@ require_once('db.php')
 
           <p><label for="password"><b>Password</b></label>
           <input type="password" name="password" required></p>
-
-          <p><label for="address"><b>Phone</b></label>
-          <input type="text" name="phone"></p>
 
           <p><label for="address"><b>Address</b></label>
           <input type="text" name="address"></p>

@@ -47,9 +47,9 @@ if (isset($_POST['update'])) {
 
     $res = $collection->updateOne(['_id' => new \MongoDB\BSON\ObjectID($id)], 
             ['$set' => ['name' => $name, 
-            'price' => $price, 
-            'vendor_id' => $vendor_id, 
-            'hub_id' => $hub_id,
+            'price' => (float)$price, 
+            'vendor_id' => (int)$vendor_id, 
+            'hub_id' => (int)$hub_id,
             'description' => $description]]);
 
     header("Location: updateproduct.php?id=".$id);
