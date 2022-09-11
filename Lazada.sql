@@ -197,4 +197,21 @@ update customer
 set Latitude = 16 , Longitude = 106.1
 where Customer_ID = 2;
 
+DELIMITER $$
+-- Given the shipper_id and hub_id, find the order count
+CREATE PROCEDURE order_in_stock(
+   IN  p_Shipper_ID INT,
+   IN  p_Hub_ID INT,
+   OUT p_Order_count INT)
+READS SQL DATA
+BEGIN
+   SELECT Order_ID
+     FROM lazada.Order
+     WHERE Shipper_ID = p_Shipper_ID
+       AND Hub_ID = p_Hub_ID
+       AND order_in_stock(Order_ID);
+ 
+   SELECT COUNT(*) INTO p_Order_count;
+END $$
+DELIMITER ;
 
