@@ -215,3 +215,17 @@ BEGIN
 END $$
 DELIMITER ;
 
+// Find order that is not in stock
+DELIMITER $$
+CREATE PROCEDURE order_not_in_stock(IN p_Shipper_ID INT, IN p_Hub_ID INT, OUT p_Order_count INT)
+READS SQL DATA
+BEGIN
+   SELECT Order_ID
+   FROM lazada.Order
+   WHERE Shipper_ID = p_Shipper_ID
+   AND Hub_ID = p_Hub_ID
+   AND NOT order_in_stock(Order_ID);
+ 
+   SELECT COUNT(*) INTO p_Order_count;
+END $$
+DELIMITER ;
