@@ -229,3 +229,21 @@ BEGIN
    SELECT COUNT(*) INTO p_Order_count;
 END $$
 DELIMITER ;
+
+//function that find the customer that buy the most
+create function fn_busiest_cust(order_no INT)
+returns char(9) not deterministic
+begin
+	declare busiest_cust char(9);
+
+	select Customer_ID into busiest_cust
+	from Customer join lazada.Order
+	on Customer.Customer_Name = lazada.Order.Customer_Name
+	where Order_ID = or_no
+	group by Customer_ID
+	order by count(*) desc
+	limit 1;
+    
+	return busiest_cust;
+end $$
+DELIMITER ;
