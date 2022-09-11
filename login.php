@@ -22,7 +22,8 @@ if (isset($_POST['act'])) {   //if the hav an account they can fill in with eith
       if ($row['Role'] == 'Vendor') {
         $_SESSION["User"] = $row['Username'];
         $_SESSION['db_user'] = 'lazadavendor';
-        header("Location: vendorview.php");
+        $criteria = 'all';
+        header("Location: vendorview.php?criteria=".$criteria);
       }
 
       if ($row['Role'] == 'Customer') {
