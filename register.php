@@ -46,7 +46,7 @@ require_once('db.php')
           $latitude = $_POST['latitude'];
         
           $insertSql = "INSERT INTO Vendor (Vendor_ID, Vendor_Name, Address, Latitude, Longitude, Username, Password, Role) VALUES 
-          ('".$id."','".$name."','".$address."','".$latitude."', '".$longitude."', '".$username."','".$password."', 'Customer');";
+          ('".$id."','".$name."','".$address."','".$latitude."', '".$longitude."', '".$username."','".$password."', 'Vendor');";
         
           $execute = mysqli_query($conn, $insertSql);
         }
