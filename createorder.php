@@ -73,7 +73,8 @@ if (isset($_POST['create'])) {
 }
 
 if (isset($_POST['back'])){
-  header("Location: productview.php");
+  $criteria = 'all';
+  header("Location: productview.php?criteria=".$criteria);
 }
 }
 else {
@@ -81,27 +82,3 @@ else {
   echo 'You have to login first';
 }
 ?>
-<!-- <form method="post">
-  <div>
-    <h1>Create a product for sale</h1>
-    <p>Fill up the form with correct values.</p>
-
-    <p><label for="hub_id"><b>Hub ID:</b></label>
-    <input type="number" name="hub_id" value='""' required></p>
-
-    <p><label for="vendor_id"><b>Vendor ID:</b></label>
-    <input type="number" name="vendor_id" required></p>
-
-
-    <p><label for="name"><b>Product name</b></label>
-    <input type="text" name="name" required></p>
-
-    <p><label for="price"><b>Price:</b></label>
-    <input type="number" name="price" required></p>
-
-    <p><label for="description"><b>Description</b></label>
-    <input type="text" name="description" required></p>
-
-    <p><input type="submit" name="create" value="create"></p>
-  </div>
-</form> -->
