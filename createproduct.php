@@ -14,7 +14,8 @@ $client = new MongoDB\Client('mongodb://localhost:27017');
 $collection = $client->lazada->product;
 
 if (isset($_POST['back'])){
-  header("Location: vendorview.php");
+  $criteria = 'all';
+  header("Location: vendorview.php?criteria=".$criteria);
 }
 
 if(isset($_POST['create'])){

@@ -56,7 +56,8 @@ if (isset($_POST['update'])) {
 }
 
 if (isset($_POST['back'])){
-  header("Location: vendorview.php");
+  $criteria = 'all';
+  header("Location: vendorview.php?criteria=".$criteria);
 }
 }
 else {
