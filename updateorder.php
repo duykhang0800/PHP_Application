@@ -61,7 +61,8 @@ if (isset($_POST['update'])) {
 }
 
 if (isset($_POST['back'])){
-  header("Location: shipperview.php");
+  $criteria = 'all';
+  header("Location: shipperview.php?criteria=".$criteria);
 }
 }
 else {
